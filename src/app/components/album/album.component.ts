@@ -4,20 +4,18 @@ import {Location} from '@angular/common';
 
 import { SpotifyService } from '../../services/spotify.service';
 
-
 import {Artist} from '../../models/artist';
 import {Album} from '../../models/album';
 
 @Component({
   moduleId: module.id,
-  selector: 'artist',
-  templateUrl: './artist.component.html',
-  styleUrls: ['./artist.component.css']
+  selector: 'album',
+  templateUrl: './album.component.html',
+  styleUrls: ['./album.component.css']
 })
-export class ArtistComponent implements OnInit {
+export class AlbumComponent implements OnInit {
     id:string;
-    artist:Artist[];
-    albums:Album[];
+    album:Album[];
 
     constructor(private _spotifyService:SpotifyService,private _route:ActivatedRoute,private _location:Location){
 
@@ -27,15 +25,10 @@ export class ArtistComponent implements OnInit {
         this._route.params
             .map(params =>params['id'])
             .subscribe((id)=>{
-                this._spotifyService.getArtist(id)
-                    .subscribe(artist=>{
-                        this.artist=artist;
-                       
-                    })
-                this._spotifyService.getAlbums(id)
-                    .subscribe(albums=>{
-                        this.albums=albums.items;
-                        //console.log(this.albums);
+                this._spotifyService.getAlbum(id)
+                    .subscribe(album=>{
+                        this.album=album;
+                        //console.log(album.tracks.items);
                     })
             })
     }//ngOnInit

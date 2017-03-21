@@ -8,13 +8,14 @@ export class SpotifyService{
     private serachUrl:string;
     private artistUrl:string;
     private albumsUrl:string;
+    private albumUrl:string;
 
     constructor(private _http:Http){
 
     }
 
     searchMusic(str:string,type='artist'){
-        this.serachUrl='https://api.spotify.com/v1/search?query='+str+'&offset=0&limit=20&type='+type+'&market=TR';
+        this.serachUrl='https://api.spotify.com/v1/search?query='+str+'&offset=0&limit=20&type='+type+'&market=US';
         return this._http.get(this.serachUrl)
             .map(res=>res.json());
     }
@@ -28,6 +29,12 @@ export class SpotifyService{
     getAlbums(artistId:string){
         this.albumsUrl='https://api.spotify.com/v1/artists/'+artistId+'/albums';
         return this._http.get(this.albumsUrl)
+            .map(res=>res.json());
+    }
+
+    getAlbum(albumId:string){
+        this.albumUrl='https://api.spotify.com/v1/albums/'+albumId;
+        return this._http.get(this.albumUrl)
             .map(res=>res.json());
     }
 }
