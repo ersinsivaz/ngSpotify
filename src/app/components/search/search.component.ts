@@ -18,6 +18,14 @@ export class SearchComponent {
   }
 
   searchMusic(){
+
+    //console.log(this.searchStr);
+
+    if(!this.searchStr){
+      this.searchRes=null;
+      return;
+    }
+
     this._spotifyService.searchMusic(this.searchStr)
       .subscribe(res=>{
         this.searchRes = res.artists.items;
