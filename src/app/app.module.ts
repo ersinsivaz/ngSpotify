@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {AppRoutingModule} from './app-routing.module';
+import {AngularFireModule} from 'angularfire2';
 
 import {SpotifyService} from './services/spotify.service';
 
@@ -13,6 +14,15 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {AboutComponent} from './components/about/about.component';
 import {ArtistComponent} from './components/artist/artist.component';
 import { AlbumComponent } from './components/album/album.component';
+import {LoginComponent} from './components/login/login.component';
+
+export const firebaseConfig={
+    apiKey: "AIzaSyArY7QKZcyckgOdWCzZTxCBPTsiFM_y9rg",
+    authDomain: "pepper-d2151.firebaseapp.com",
+    databaseURL: "https://pepper-d2151.firebaseio.com",
+    storageBucket: "pepper-d2151.appspot.com",
+    messagingSenderId: "982392637383"
+};
 
 @NgModule({
   declarations: [
@@ -21,13 +31,15 @@ import { AlbumComponent } from './components/album/album.component';
     AboutComponent,
     SearchComponent,
     ArtistComponent,
-    AlbumComponent
+    AlbumComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [ SpotifyService ],
   bootstrap: [ AppComponent ]
